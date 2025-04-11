@@ -78,11 +78,10 @@ namespace PatientAPI.Controllers
 
         [HttpPost("{id}/attachments")]
         [Authorize(Roles = "writer")]
-        public async Task<IActionResult> AddFileAttachment(int id)
+        public async Task<IActionResult> AddFileAttachment(int id, IFormFile file)
         {
             try
             {
-                var file = Request.Form.Files[0];
                 if (file == null || file.Length == 0)
                     return BadRequest(new { message = "No file dound in the body" });
 

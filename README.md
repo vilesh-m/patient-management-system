@@ -4,7 +4,7 @@
 
 Following Diagram represent:
 
-![Patient Management System Architecture](./logical Diagram.png) **(Replace this with the actual URL to your PNG image)**
+![Patient Management System Architecture][(https://github.com/vilesh-m/patient-management-system/blob/task/reactapp/Logical%20Diagram.png)]
 ---
 
 **Components:**
@@ -48,7 +48,7 @@ Following Diagram represent:
 
 To better understand the system's flow and interactions, please watch the following video:
 
-[Embedded Video - Patient Management System Demo]() 
+[Embedded Video - Patient Management System Demo](https://github.com/vilesh-m/patient-management-system/blob/task/reactapp/react-app-demo.mp4) 
 
 
 **Key Features/Technologies:**

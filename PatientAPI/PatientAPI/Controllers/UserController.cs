@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using PatientManagementAPI.Services;
-using System.Collections.Generic;
-using System.Text.Json;
+using PatientSystem.Services.Interfaces;
 
 namespace PatientAPI.Controllers
 {
@@ -9,9 +7,9 @@ namespace PatientAPI.Controllers
     [ApiController]
     public partial class UserController : ControllerBase
     {
-        private readonly JwtService _jwtService;
+        private readonly IJwtService _jwtService;
 
-        public UserController(JwtService jwtService)
+        public UserController(IJwtService jwtService)
         {
             _jwtService = jwtService;
         }

@@ -68,3 +68,24 @@ To better understand the system's flow and interactions, please watch the follow
 *   **React App:** Modern JavaScript/Typescript framework I have use to showcase backend API.
 
 
+**Run the WebAPI**
+- open the solution file in Visual Studio
+- Set the PatientAPI project as the startup project, and hit play.
+- If the React App is running on a different port, update the CORS origin in Program.cs.
+- There are unit test with mocked DB Service and JWTService.
+- Use the swagger to add,search,delete patients. Also attachment can be added and removed. Also support is there to add Medical History to a patient.
+
+**Run the react app**
+- Change to the fd-patient-app directory
+``>cd fd-patient-app``
+
+- run npm install
+```npm install``
+
+- start the app
+``npm start``
+
+- If the API is running on a different port, update variable "API_BASE_URL" in ".\fd-patient-app\src\service.tsx" file.
+
+
+

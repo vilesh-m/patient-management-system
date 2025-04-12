@@ -4,9 +4,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.OpenApi.Models;
-using PatientManagementAPI.Services;
 using LiteDB;
-using PatientAPI.Services;
+using PatientSystem.Services;
+using PatientSystem.Services.Interfaces;
 namespace PatientAPI
 {
     public static class Registrations
@@ -20,9 +20,11 @@ namespace PatientAPI
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidateIssuerSigningKey = true,//If I did false for this too then can am not doing any validation
+                        ValidateLifetime = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("codegetthekeyfromconfiginsteadofhardcodinghere")),
                         ValidateIssuer = false,
                         ValidateAudience = false,
+                        ClockSkew = TimeSpan.Zero //For some reason only when I add this it validated expire
                     };
                 });
 
@@ -59,9 +61,9 @@ namespace PatientAPI
 
         public static WebApplicationBuilder WithServices(this WebApplicationBuilder appBuilder)
         {
-            appBuilder.Services.AddSingleton<JwtService>();
-            appBuilder.Services.AddSingleton<ILiteDatabase>(new LiteDatabase("Filename=:memory:"));
-            appBuilder.Services.AddSingleton<DatabaseService>();
+            appBuilder.Services.AddSingleton<IJwtService, JwtService>();
+            appBuilder.Services.AddSingleton<ILiteDatabase>(new LiteDatabase("Filename=lite-patientmanagement.db"));
+            appBuilder.Services.AddSingleton<IPatientRepository, PatientRepository>();
 
             return appBuilder;
         }

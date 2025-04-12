@@ -2,10 +2,11 @@
 
 **Logical Diagram:**
 
-Following Diagram represent:
- 
+
 ![Logical Diagram](./Logical-Diagram.png) 
+
 ---
+Above diagram represent:
 
 **Components:**
 
@@ -42,7 +43,7 @@ Following Diagram represent:
         *   `Search`: Searches for patients within the database. Its a one text input search supporting multiple fields like name, medical history and attachment types.
         *   `MedicalHistory`: Patient can have multiple historys added via this operation
 
-5 **Data Storage:** The **DB/Repository Service** interacts with the **LiteDB** NoSQL store, managing data based on user roles.
+5. **Data Storage:** The **DB/Repository Service** interacts with the **LiteDB** NoSQL store, managing data based on user roles.
 
 ---
 
@@ -68,14 +69,14 @@ To better understand the system's flow and interactions, please watch the follow
 *   **React App:** Modern JavaScript/Typescript framework I have use to showcase backend API.
 
 
-**Run the WebAPI**
+**Running the WebAPI**
 - open the solution file in Visual Studio
 - Set the PatientAPI project as the startup project, and hit play.
 - If the React App is running on a different port, update the CORS origin in Program.cs.
 - There are unit test with mocked DB Service and JWTService.
 - Use the swagger to add,search,delete patients. Also attachment can be added and removed. Also support is there to add Medical History to a patient.
 
-**Run the react app**
+**Running the react app**
 - Change to the fd-patient-app directory
 ``>cd fd-patient-app``
 

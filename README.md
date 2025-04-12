@@ -1,54 +1,62 @@
-## System Architecture Diagram - Patient Management Application
+## Patient Management Application
 
-**System Diagram:**
+**Logical Diagram:**
 
 Following Diagram represent:
-
-![Patient Management System Architecture](./logical Diagram.png) **(Replace this with the actual URL to your PNG image)**
+ 
+![Logical Diagram](./Logical-Diagram.png) 
 ---
 
 **Components:**
 
-*   **User Controller:** Manages user authentication and authorization logic.
 *   **Web API:** Provides the backend services (API endpoints).
-*   **JWT Service:**  Generates and verifies JSON Web Tokens. (Mocks token)
-*   **LiteDB:** In-memory NoSQL database for storing patient data.
-*   **DB Service:** Interacts with LiteDB to perform CRUD operations. Its named as PatientRepository in code.
-
-*   **React App:** The user interface built with React.js.
+    - **User Controller** for user and token management
+    - **Patient Controller** for patient demographics and records management
+*   **React App:** The user interface built with ReactJS.
     -  **Authentication Card:** Handles login and logout functionality, retrieving tokens.
-    - **Patient Management Card:**  The UI element for managing patient records.
+    - **Patient Management Card:**  The UI Card for managing patient records.
+*   **JWT Service:**  Generates a mock JSON Web Tokens, this is to simulate an Identity provider.
+*   **LiteDB:** In-memory NoSQL database for storing patient data.
+*   **Patient Repository Service:** Interacts with LiteDB to perform CRUD operations.
+
 
 ---
 
 **Flow & Interactions:**
 
-1.  **Token Acquisition:** The React App receives a token from the **Authentication Card** (via login), then this token is passed in every subsequent call.
+1.  **Token Acquisition:** You can either use swagger's Authorize token to setup the token, or the React App receives a token from the **Authentication Card** (via login), then this token is passed in every subsequent call.
 
 2.  **Authentication Request:**
-    *   The React App sends an authentication request to the **User Controller**Login Controller in the **Web API**.
+    *   The React App sends an authentication request to the **User Controller** Login operation in the **Web API**.
 
 3.  **Authorization:** 
-    * The **Patient Controller** has the Authorize action filters on each operation, and uses the configured validator to verify the token and performs Authorization acording to the roles in the token.
+    * The **Patient Controller** has the Authorize action filters on each operation, and uses the configured validator to verify the token and performs authorization acording to the roles in the token.
 
 4.  **API Calls & Data Interaction:**
-    *   The React App makes API calls to the **Web API** for various operations:
+    *   **Web API** support various operations:
         *   `Get Patients`: Retrieves all patients 
         *    `Post Patient`: Creates a new patient record in LiteDB.
         *   `Delete Patient`: Deletes a patient record in LiteDB.
         *   `Upload Attachment`:  Handles file uploads
         *   `Download Attachment`: Handles file downloads 
         *   `Search`: Searches for patients within the database. Its a one text input search supporting multiple fields like name, medical history and attachment types.
+        *   `MedicalHistory`: Patient can have multiple historys added via this operation
 
-5 **Data Storage:** The **DB Service** interacts with the **LiteDB** NoSQL store, managing data based on user roles.
+5 **Data Storage:** The **DB/Repository Service** interacts with the **LiteDB** NoSQL store, managing data based on user roles.
 
 ---
 
-**Video Demonstration:**
+**Video Demonstration: Swagger**
 
 To better understand the system's flow and interactions, please watch the following video:
 
-[Embedded Video - Patient Management System Demo]() 
+![Embedded Video - Patient Management System Demo](./swagger-demo.gif) 
+
+**Video Demonstration: React App**
+
+To better understand the system's flow and interactions, please watch the following video:
+
+![Embedded Video - Patient Management System Demo](./react-app-demo.gif) 
 
 
 **Key Features/Technologies:**

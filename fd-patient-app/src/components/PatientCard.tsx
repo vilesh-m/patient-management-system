@@ -51,11 +51,11 @@ const PatientCard: React.FC = () => {
     }
   };
 
-  const handleAddAttachment = async (file: File) => {
+  const handleAddAttachment = async (file: File, attachmentContext: string) => {
     if (!selectedPatientId) return;
 
     try {
-      await uploadAttachment(selectedPatientId, file);
+      await uploadAttachment(selectedPatientId, file, attachmentContext);
       setIsAddAttachmentModalOpen(false);
       fetchPatients(); // Refresh to get updated attachments
       alert('File attachment added successfully');

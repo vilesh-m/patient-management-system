@@ -48,10 +48,10 @@ export const searchPatients = async (searchText: string) => {
     return response.data;
 };
 
-export const uploadAttachment = async (patientId: number, file: File) => {
+export const uploadAttachment = async (patientId: number, file: File, attachmentContext: string) => {
     const formdata = new FormData();
     formdata.append('file', file);
-    const response = await api.post(`/Patient/${patientId}/attachments`, formdata, {
+    const response = await api.post(`/Patient/${patientId}/attachments?attachmentContext=${attachmentContext}`, formdata, {
         headers: {
             "Content-Type": "multipart/form-data"
         }

@@ -8,12 +8,13 @@ import { useState } from 'react';
 interface AddFileUploadlProps {
     isOpen: boolean;
     onClose: () => void;
-    onAddAttachment: (file: File) => void;
+    onAddAttachment: (file: File, attachmentContext: string) => void;
 }
 
 const AddFileUpload: React.FC<AddFileUploadlProps> = ({ isOpen, onClose, onAddAttachment }) => {
     const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const [attachmentContext, setAttachmentContext] = useState<string>('');
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -31,7 +32,7 @@ const AddFileUpload: React.FC<AddFileUploadlProps> = ({ isOpen, onClose, onAddAt
             return;
         }
 
-        onAddAttachment(file);
+        onAddAttachment(file, attachmentContext);
         setFile(null);
     };
 
@@ -48,6 +49,18 @@ const AddFileUpload: React.FC<AddFileUploadlProps> = ({ isOpen, onClose, onAddAt
                     </ModalHeader>
                     <ModalBody>
                         <form onSubmit={handleSubmit}>
+                            <div className="mb-3">
+                                <label htmlFor="fileUpload" className="form-label">
+                                    Attachment Context:
+                                </label>
+                                <input
+                                    id="attachmentContext"
+                                    type="text"
+                                    value={attachmentContext}
+                                    onChange={(e) => setAttachmentContext(e.target.value)}
+                                    className={`form-control ${error ? 'is-invalid' : ''}`}
+                                />
+                            </div>
                             <div className="mb-3">
                                 <label htmlFor="fileUpload" className="form-label">
                                     Select a file to upload:
